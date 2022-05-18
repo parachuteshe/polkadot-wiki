@@ -7,259 +7,154 @@ keywords: [NFT, non-fungible token, NFT 2.0]
 slug: ../learn-nft
 ---
 
-This page is a high-level overview of NFTs and the various approaches to NFTs within 
-the Polkadot network.
+本页是对NFT以及波卡网络中各种NFT方法的总览。
 
-**Expect Chaos.**
+**预见混乱（Expect Chaos）。**
 
-## Fungibility
+## 可替代性
 
-NFT stands for *non-fungible token*. Fungibility means interchangeability inside
-of a group. In theory, a $20 bill is always worth $20 in a store and identical
-in value to any other $20 bill. It is not, however, fungible with a $1 or $100
-dollar bill (outside its group).
+NFT意为*不可替代代币*。可替代性，指的是组织内部的互换能力。从理论上讲，一张20美元的钞票在商店里总是值20美元，而且与任何其他20美元纸币的价值相当。然而，它不能与1美元或100美元的钞票(在组织之外)互换。
 
-A Pokemon™ trading card of a Charizard is non-fungible with a card of Squirtle,
-whereas editions of Charizard are fungible with each other.
+这就好比宝可梦的喷火龙卡牌不可与杰尼龟卡牌进行互换，但是不同版本的喷火龙卡牌之间是可以互换的。
 
-Fungibility is a spectrum - what is fungible to some might not be fungible to
-others. In reality, Pokemon™ cards, the canonical example of non-fungible
-assets are more fungible than US dollar bills, each of which has a unique serial
-number that may be important to a government agency. The cards have no
-serial numbers [1].
+可替代性是一种范围——对一部分人来说可以替代的东西，对其他人可能就不是。现实中，宝可梦卡牌是不可替代资产的典型例子，它比美元钞票更具可互换性，因为钞票都有一个可能对政府机构很重要的唯一序列号。但宝可梦卡牌并没有序列号[1]。
 
 ![](<https://www.investopedia.com/thmb/Nr-RLORu5CX_lIWZfLmV5X0eIrc=/613x345/smart/filters:no_upscale()/Clipboard01-d20f6eb9351e4f36a46e11fd87b53b2d.jpg>)
 
-Additionally, a digital item like a "purple magic sword" in a game may be
-fungible with another visually identical sword if all the player cares about is
-the looks of their character. But if the other sword has a different function,
-and that function influences the outcome of an adventure the player is about to
-embark on, then visually identical swords are absolutely non-fungible.
+此外，如果玩家只是在乎角色的外观，那么游戏中像紫色魔剑这样的数字道具，或许可以置换另一把外观相似的剑。但如果另一把剑有不同的功能，并且会影响玩家即将开启的冒险的结果的话，那么外观相似的剑绝对是不可替换的。
 
-Bearing that in mind, the simplest explanation of NFTs is that **NFTs are rows
-of arbitrary, project-specific, and non-interchangeable data that can be
-cryptographically proven to "belong" to someone**. This data can be anything -
-concert tickets, attendance badges, simple words, avatars, plots of land in a
-metaverse, audio clips, house deeds, mortgages, and more.
+考虑到这一点，对NFT最简单的解释是，**NFT是一系列任意的、基于项目的、不可互换的数据，可以通过加密的方式证明属于某人**。这些数据可以是任何东西，例如演唱会门票、出席证明、简单的词汇、虚拟化身、虚拟世界中的地块、音频剪辑、房屋契约、抵押贷款等等。
 
 ---
 
-## NFT Standards
+## NFT标准
 
-A general-purpose blockchain is not built to natively understand the concept of
-NFTs. It is only natively aware and optimized for its own native tokens, but
-implementations built on such a chain are essentially "hacks".
+通用区块链，本质并不是为了阐释NFT的概念而构建的。它只是对自己的原生代币有天然的感知，并持续优化；但是建立在链上这样的实现，本质上是一种 "侵入"。
 
-For example, Ethereum is a general-purpose blockchain that does not have the
-concept of "tokens" (fungible or not) built-in. Tokens in Ethereum are
-essentially spreadsheets of information to be interpreted and read in a
-certain way by various user interfaces. This *way* in which they should read
-them is called a *standard*.
+例如，以太坊是一个通用区块链，它没有内置“代币”(可替换或不可替换)的概念。以太坊中的代币，本质上是由各种用户界面以*特定方式*解释和读取的信息电子表格。这样的阅读方式被称为*标准*。
 
-The most widespread fungible token standard you may have heard of is ERC20,
-while the most widespread NFT standard is ERC721, followed closely by ERC1155.
-The downside of having to define these standards is that they are always
-instructions for how to read a spreadsheet pretending to serve information in a
-certain way, which by definition cannot be optimized. For this reason, even on a
-good day of extremely low network congestion, interactions with NFTs on any EVM
-chain will cost a few dollars but were on average around $100 per interaction
-(transfer, mint, sale) in 2021 on Ethereum.
+可能您听的最多的可替代代币标准是ERC20，而最广泛的NFT标准是ERC721，紧随其后的是ERC1155。必须定义这些标准的缺点是，它们总是指示如何以某种方式阅读电子表格，假装以某种方式提供信息，但根据定义，这种方式不能被优化。因此，即使在网络通畅的好日子里，与任何EVM链上的NFT进行交互也会花费几美元；但在2021年，以太坊上每次交互（转移、造币、出售）的平均成本约为100美元。
 
-This prevents use cases that go beyond the current craze of _digital dust
-gathering NFTs_ on Ethereum - profile pictures, generative "look once and then
-put away" art, [ENS](ens) addresses, and [proof of attendance badges](https://poap.xyz/).
+这可以防止超出当前以太坊上*收集数字灰尘类NFT*热潮的案例——例如个人资料照片，“看一次然后被丢弃”的生成艺术，[ENS](ens)地址以及[出勤证明徽章](https://poap.xyz/)等。
 
-#### A typical [NFT on Ethereum](https://opensea.io/assets/0x2127fe7ffce4380459cced92f2d4793f3af094a4/12598)
+#### 典型的 [以太坊上的NFT](https://opensea.io/assets/0x2127fe7ffce4380459cced92f2d4793f3af094a4/12598)
 
 ![](../assets/nft/samurai.png)
 
-For the sake of comparison, we can refer to these as NFTs 1.0: static NFTs that
-are almost exclusively image-based collectibles of varying rarity.
+为了便于比较，我们可以将这些称为NFT 1.0：静态NFT，几乎完全是基于图像的收藏品，稀有程度各不相同。
 
 ---
 
-## NFTs 2.0: NFTs in Polkadot & Kusama
+## NFTs 2.0：Polkadot和Kusama的NFT
 
-This is where Polkadot's technology shines and where NFTs 2.0 come into play.
+这是Polkadot的技术闪耀之处，也是NFTs 2.0发挥作用的地方。
 
-By allowing [heterogeneous application-specific shards](learn-parachains.md) to
-exist, builders can natively optimize for complex NFT use cases without
-tradeoffs that would make interacting with the system prohibitively inefficient
-and expensive in other environments.
+通过允许[异构的特定分片](learn-parachains.md)存在 ，构建者可以针对复杂的NFT用例进行原生优化，而无需权衡在其他环境与系统交互时低下的效率及高昂的代价。
 
-The following NFT solutions exist and are under development in the Polkadot
-ecosystem:
+在Polkadot生态系统中，存在以下NFT解决方案，并正在开发中：
 
-### Unique network
+### 独特网络（Unique Network）
 
-[Unique network](https://unique.network/), an NFT-specific blockchain offering
-innovations such as sponsored transactions, bundling fungible tokens with
-non-fungibles, and splitting NFTs into fungible tokens for partial ownership.
+[独特网络（Unique Network）](https://unique.network/)，是NFT特定的区块链，提供创新功能如：赞助交易，捆绑可替代代币与不可替代代币，以及为获得部分所有权将NFT拆分为可替换代币。
 
-Unique Network have launched two NFT projects to date: Substrapunks as part of
-[Hackusama](https://hackusama.devpost.com/), and Chelobricks as a recent
-promotion during [Polkadot Decoded](https://decoded.polkadot.network/). They are
-currently running a betanet which is bridged to Kusama, and on which these NFTs
-are already tradable.
+到目前为止，独特网络（Unique Network）已经推出了两个NFT项目：作为[Hackusama](https://hackusama.devpost.com/)的一部分的SubstRapunks，以及最近在[Polkadot Decoded](https://decoded.polkadot.network/)期间作为一项推广活动的Cherobricks。他们目前正在运营与Kusama相连的betanet，这些NFT已经可以在上面交易。
 
-#### NFT from [Unqnft.io](https://unqnft.io) [2]
+#### 来自[Unqnft.io](https://unqnft.io)的NFT [2]
 
 ![](https://unique.network/local/templates/unique/static/images/content/chel-400.jpg)
 
-Users can send KSM into their Unique Network escrow account, trade with it
-there, and then send any earned or leftover KSM back.
 
-Unique Network aims to make their marketplace technology open-source and
-whitelabel-friendly. In theory, it should be trivial to set up a new marketplace
-for your project using Unique's technology. Unique network aims to be a
-parachain on Polkadot, and Quartz is their Kusama counterpart.
+用户可以将KSM发送到他们的独特网络（Unique Network）托管帐户，在那里进行交易，然后将赚取或剩余的KSM发回。
 
-*Unique Network works closely with RMRK (see below).*
+独特网络（Unique Network）旨在使他们的市场技术具有开源性和白标友好性。从理论上讲，使用Unique的技术，可以为您的项目轻松建立一个新的市场。独特网络（Unique Network）的目标是成为Polkadot上的平行链，而Quartz是他们在Kusama的对手。
+
+*独特网络（Unique Network）与RMRK密切合作（见下文）。*
 
 ### RMRK
 
-[RMRK](https://rmrk.app) is a "hack", a forced standard directly on top of the
-Kusama relay chain. Since Kusama is meant to be lightweight to process
-the various parachains connected to it, it does not have any other
-complex chain logic like native NFTs or smart contracts to enable them. However,
-because of market demand and Kusama's "chaotic" nature, the RMRK team decided to
-take the ["colored coins"](https://en.bitcoin.it/wiki/Colored_Coins) approach
-from Bitcoin and implement NFTs as graffiti on the Kusama chain.
+[RMRK](https://rmrk.app)是一种“侵入”，是在Kusama中继链之上的强制标准。由于Kusama旨在轻量级地处理与其连接的各种平行链，因此它没有任何其他类似原生NFT或智能合约的复杂链逻辑。然而，由于市场需求和Kusama的“混乱”性质，RMRK团队决定采用比特币的[“染色币(colored coins)”](https://en.bitcoin.it/wiki/Colored_Coins)方法，在Kusama链上实现NFT涂鸦。
 
-The RMRK standard is a set of rules and specifications for how to interpret
-special graffiti on Kusama called "remarks", accessible via the core `system`
-pallet in any Substrate chain.
+RMRK标准是一套用于解释Kusama上称为“备注（remarks）”的特殊涂鸦的规则范式，它可通过任何Substrate链中的核心`系统` pallet进行访问。
 
-The RMRK team has just launched the 2.0 version of the protocol, a set of "NFT
-legos", primitives that, when put together, allow a builder to compose an NFT
-system of arbitrary complexity without smart contracts. 
+RMRK团队刚刚发布了该协议的2.0版本，这是一套“NFT乐高（NFT legos）”基础组件，当它们组合在一起时，允许构建者在没有智能合约的情况下构建任意复杂的NFT系统。
 
-#### NFT Legos
 
-1. NFTs can own other NFTs, NFTs can equip other NFTs for visual change
-2. NFTs can have multiple resources (different outputs based on context and
-   resource priority)
-3. NFTs can have on-chain emotes (reactions) for price discovery and social
-   mechanics
-4. NFTs have conditional rendering (e.g. show Mona Lisa as blushing if she got
-   50 kissy 😘 emoji)
-5. NFTs can be governed by the community via fungible shareholder-tokens
-   (fractionalization of NFTs)
+#### NFT乐高
 
-The upcoming version 3.0 (Q1 2022) will be pallet and smart contract (EVM)
-versions of all RMRK 2.0 logic, and integration into partner chains for cheap
-and easy teleportation of non-fungibles across dozens of chains.
+1. NFT可以拥有其他NFT，NFT可以装配其他NFT进行视觉变化
+2. NFT可以（根据环境和资源优先级）拥有多个资源
+3. NFT在发现价格和社会机制时，可以产生链上表情（情绪反应）
+4. NFT有条件渲染（例如，如果蒙娜丽莎得到50个😘亲吻表情符号，她就会脸红）
+5. NFT可以由社区通过可替代的持有者代币（NFT的细分）进行管理
 
-#### NFT from [Kanaria](https://kanaria.rmrk.app)
+即将到来的的3.0版本（于2022年第一季度发布），将是融合所有RMRK 2.0逻辑的pallet和智能合约（EVM）版本；它会集成到合作伙伴链中，并可在数十个链中低价且轻松地传送不可替代代币。
+
+#### 来自[Kanaria](https://kanaria.rmrk.app)的NFT
 
 ![](../assets/nft/kanaria.png)
 
-:::note Multi-resource NFTs
+:::note 多资源型NFT
 
-A multi-resource NFT (gif of statue, and SVG-composable dynamic NFT in one) that can 
-also equip other NFTs from within its "inventory".
+多资源型NFT（GIF的状态，和SVG组合型动态NFT可合二为一）也可从它的“库存”中装备其他NFT。
 
 :::
 
-The RMRK team is collaborating closely with Unique network. RMRK's logic and
-technology will be deployed on Unique Network in the form of runtime upgrades
-(FRAME pallets).
+RMRK团队正在与独特网络（Unique Network）密切合作。RMRK的逻辑和技术将以runtime升级（FRAME pallets）的形式部署在唯一网络上。
 
-Two marketplaces for RMRK-based NFTs exist with hundreds of projects already
-launched:
+基于RMRK的NFT有以下两个市场，在其中已有数百个项目启动：
 
-- [Singular](https://singular.rmrk.app), the official marketplace
-- [Kodadot](https://kodadot.xyz), a third party marketplace
+- [Singular](https://singular.rmrk.app)，官方市场
+- [Kodadot](https://kodadot.xyz)，第三方市场
 
-Additionally, RMRK 2.0 functionality featuring composable, nested,
-multi-resource NFTs can be accessed and tested on the
-[Kanaria](https://kanaria.rmrk.app) platform.
+此外，可以在[Kanaria](https://kanaria.rmrk.app)平台上访问和测试具有可组合、嵌套、多资源NFT的RMRK 2.0功能。
 
-For a complete introduction into RMRK, see
-[the video explainer of RMRK](https://url.rmrk.app/rmrkcc),
-[the video explainer of Kanaria (RMRK 2)](https://url.rmrk.app/kanariacc), and
-read [the docs](https://docs.rmrk.app).
+有关RMRK的完整介绍，详见[RMRK的视频解说](https://url.rmrk.app/rmrkcc)，[Kanaria(RMRK 2)的视频解说](https://url.rmrk.app/kanariacc)，以及[说明文档](https://docs.rmrk.app)。
 
-### Efinity
+### 无限性
 
-Spearheaded by [Enjin](https://enjin.io), the authors of Ethereum's ERC1155
-standard and makers of the Enjin wallet and Unity plugin, which allows easy
-implementation of NFTs into 3D games, Efinity is an NFT bridging chain coming to
-Kusama and Polkadot in 2022.
+作为以太坊ERC1155标准的作者以及Enjin Wallet和Unity插件的创造者，[Enjin](https://enjin.io)领头实现了NFT在3D游戏中的轻松部署。Efinity是一个NFT桥接链，将于2022年在Kusama和Polkadot上线。
 
-They plan to build a *paratoken* which would be a standard for token
-migration across different parachains in the Polkadot ecosystem, but also into
-and out of Ethereum and other EVM systems.
+他们计划建立一个*平行代币*，这不仅将成为Polkadot生态系统中不同平行链之间代币迁移的标准，也将成为进出Etherum和其他EVM系统的标准。
 
 ### Moonbeam
 
-[Moonbeam](https://moonbeam.network) and its Kusama counterpart Moonriver are
-full EVM deployments with Ethereum RPC endpoints.
+[Moonbeam](https://moonbeam.network)和在Kusama上与之对应的MoonRiver，都是使用Etherum RPC端点的完整EVM部署。
 
-This means that the entire toolkit offered to other EVM chains (stacks like
-Hardhat, Remix, Truffle, Metamask, etc.) are available to Moonriver / Moonbeam users
-and developers, giving it a noticeable head start in attracting existing
-userbases.
+这意味着提供给其他EVM链的整个工具包(如HardHat、Remix、Truffle、MetamASK等堆栈)可供MoonRiver/MoonBeam用户和开发人员使用，这使其在吸引现有用户群方面有明显的领先优势。
 
-Several dozen high profile teams are launching their products (or
-re-launching) on Moonriver / Moonbeam, however, it is essential to note that
-Moonbeam is an EVM chain and will therefore suffer from the same limitations as
-any other EVM chain in regards to customization and feature-richness of NFTs.
+数十个备受瞩目的团队正在Moonriver/Moonbeam上推出（或重新推出）他们的产品，然而，必须注意的是，Moonbeam是EVM链，因此在NFT的定制化和功能丰富性方面将受到与任何其他EVM链相同的限制。
 
-A notable advantage, however, is that Moonriver / Moonbeam is still a Substrate
-chain, meaning integration of custom pallets into the runtime is still possible,
-making NFT specific optimizations at the chain runtime level a reliable way to 
-keep EVM compatibility of tools while at the same time optimizing storage and
-interactions for rich NFTs.
+然而，一个值得注意的优势是，MoonRiver/MoonBeam仍然是Substrate链，这意味着仍然可以将定制pallet集成到runtime中，使链runtime层面的NFT特定优化成一种可靠方法，以保持工具的EVM兼容性，同时优化丰富NFT的存储和交互。
 
 ### Uniques
 
-Uniques is a
-[FRAME pallet](https://github.com/paritytech/substrate/tree/master/frame/uniques)
-deployed on the Statemint common good parachain. It implements the
-most basic kind of NFT - a data record referencing some metadata. This metadata
-reference is mutable until frozen, so NFTs and their classes (entities
-derived from) are mutable unless specifically made immutable by the issuer.
+Uniques是部署在公共利益平行链Statemint上的[FRAME pallet](https://github.com/paritytech/substrate/tree/master/frame/uniques)。它实现了最基本的NFT类型——引用一些元数据的数据记录。这些元数据的引用在冻结之前是可变的，因此NFT及其类别（派生的实体）是可变的，除非发行者特别说明是不可变的。
 
-Uniques takes a very bare-bones approach on purpose, to keep the Statemint chain
-a simple balance-keeping chain for both fungible and non-fungibles.
+Uniques故意采取了一种非常简单的方法，使Statemint链成为可替代和不可替代间的简单持衡链。
 
-Uniques NFTs can be viewed and interacted with on
-[RMRK's Singular platform](https://singular.rmrk.app), by switching the top
-right menu from Kusama to Statemine.
+可以在[RMRK的Single Platform](https://singular.rmrk.app)上，将右上角菜单从Kusama切换到Statemine，查看Uniques NFT并与之交互。
 
 ![](../assets/nft/nft-statemine.png)
 
-The can also be interacted with directly through the
-[extrinsics tab of Statemine](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama-statemine-rpc.paritytech.net#/extrinsics):
+还可以通过[Statemine的Extrinsics选项卡](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama-statemine-rpc.paritytech.net#/extrinsics)直接与交互：
 
 ![](../assets/nft/uniques.png)
 
-**More UIs are already being developed**.
+**更多的用户界面已经在开发中。**
 
 ---
 
-## Bridging
+## 桥接
 
-Bridging to and from Substrate chains and EVM chains takes much effort but
-is a highly desired feature in the NFT industry. Merging the collector and
-customer base has significant implications, so multiple projects focus on making
-this possible.
+桥接Substrate链和EVM链需要付出很大的努力，但这是NFT行业非常需要的功能。合并收集者和客户群具有重要意义，因此多个项目都致力于实现这一点。
 
-Apart from RMRK (Substrate-to-Substrate seamless teleportation natively with 
-[XCMP](learn-cross-consensus.md)) and Efinity (Paratoken), the following efforts are 
-underway:
+除了RMRK（使用[XCMP](learn-cross-consensus.md)原生的Substrate到Substrate的无缝远程传输）和Efinity（平行代币）外，还有以下工作正在进行中：
 
-- **MyNFT**: an EVM to EVM bridging effort.
-- **RMRK <-> EVM** Simplification bridge: a bridge developed during the
-  [RMRK hackathon](https://rmrk.devpost.com) for porting RMRK NFTs into
-  simplified IOUs on EVM chains, primary deployment pending November 2022 on
-  Moonriver
-- **RMRK <-> EVM** Full bridge: EVM version of RMRK 2.0 should be ready in December
-  2021, meaning a full migration of RMRK 2.0 NFTs from RMRK (Kusama) to
-  Moonriver (and other EVMs) will become possible
+- **MyNFT**: 一个EVM到EVM的桥接工作。
+- **RMRK <-> EVM** 简化桥: 在RMRK黑客马拉松期间开发的桥，用于将[RMRK hackathon](https://rmrk.devpost.com)移植到EVM链上的简化IOU中，主要部署将于2022年11月在MoonRiver上进行。
+- **RMRK <-> EVM** 完整桥:EVM版本的 RMRK 2.0 应在2021年12月准备就绪，这意味着完全迁移 RMRK 2.0 NFT 从  RMRK（Kusama）到 MoonRiver（和其他EVM）将成为可能。
 
-### References
+### 参考
 
 - [1]: [Investopedia](https://www.investopedia.com/terms/l/liars-poker.asp)
 - [2]: [Unique Network's Chelobrick](https://unique.network/blog/chelobricks-making-waves-with-10-000-substrate-based-nfts/)
