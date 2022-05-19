@@ -2,106 +2,65 @@
 id: learn-architecture
 title: Architecture
 sidebar_label: Architecture
-description: Learn about the key components to Polkadot's Architecture.
-keywords: [polkadot, components, architecture]
+description: 了解Polkadot构造的关键组件。
+keywords: [polkadot, 组件, 构造]
 slug: ../learn-architecture
 ---
+> 
+> 原文链接：[https://wiki.polkadot.network/docs/learn-nft](https://wiki.polkadot.network/docs/learn-architecture) ，中文翻译：Sherise
+> 
+Polkadot是一个具有共享安全性和互用性的异构多链（Multichain）。
 
-Polkadot is a heterogeneous multichain with shared security and interoperability.
+# 组件
 
-# Components
+## 中继链
 
-## Relay Chain
+中继链是Polkadot的中心链。Polkadot上所有的所有校验器都被标记在DOT的中继链上，并对中继链进行验证。中继链由为数不多的交易类型组成，这些交易类型包括与治理机制交互的方式、平行链拍卖和参与NPoS。中继链具有故意设置的最小化功能——例如，不支持智能合约。中继链的主要责任是协调整个系统，包括平行链；其他特定的工作则被委托给平行链，两者有不同的部署方式和功能。
 
-The Relay Chain is the central chain of Polkadot. All validators of Polkadot are staked on the Relay
-Chain in DOT and validate for the Relay Chain. The Relay Chain is composed of a relatively small
-number of transaction types that include ways to interact with the governance mechanism, parachain
-auctions, and participating in NPoS. The Relay Chain has deliberately minimal functionality - for
-instance, smart contracts are not supported. The main responsibility is to coordinate the system as
-a whole, including parachains. Other specific work is delegated to the parachains, which have
-different implementations and features.
+## [平行链](learn-parachains.md) 和 [平行线程](learn-parathreads.md) 值槽
 
-## [Parachain](learn-parachains.md) and [Parathread](learn-parathreads.md) Slots
+Polkadot可以支持多个执行值槽。这些值槽就像计算机处理器上的核心（例如，现代笔记本电脑的处理器可能有八个核心），这些核心中的每一个一次可以运行一个进程。Polkadot允许这些值槽使用平行链和平行进程这两种订阅模式。平行链有一个专门用于链条的值槽（核心），就像一个不断运行的进程。平行线程则是在一个组中共享值槽，因此更像是需要唤醒且运行频率较低的进程。
 
-Polkadot can support a number of execution slots. These slots are like cores on a computer's
-processor (a modern laptop's processor may have eight cores, for example). Each one of these cores
-can run one process at a time. Polkadot allows these slots using two subscription models: parachains
-and parathreads. Parachains have a dedicated slot (core) for their chain and are like a process that
-runs constantly. Parathreads share slots amongst a group, and are thus more like processes that need
-to be woken up and run less frequently.
+整个Polkadot网络中发生的大部分计算，会由被委托处理各种用例的特定平行链或平行线程实现。除了要求平行链必须能够生成被分配到的校验器实现验证的证明之外，Polkadot对平行链不做任何限制。这个证明验证了平行链的状态转换。部分平行链可能专用于特定的应用程序，而另一部分平行链可能专注于特定的功能，如智能合约、隐私或可扩展性；然而，其他平行链可能是试验性的架构，本质上不一定是区块链。
 
-Most of the computation that happens across the Polkadot network as a whole will be delegated to
-specific parachain or parathread implementations that handle various use cases. Polkadot places no
-constraints over what parachains can do besides that they must be able to generate a proof that can
-be validated by the validators assigned to the parachain. This proof verifies the state transition
-of the parachain. Some parachains may be specific to a particular application, others may focus on
-specific features like smart contracts, privacy, or scalability &mdash; still, others might be
-experimental architectures that are not necessarily blockchain in nature.
+Polkadot提供许多方法，确保平行链在特定时间范围内的值槽。平行线程是线程池的一部分，这个池子共享值槽以及必胜的独立区块拍卖。平行线程和平行链具有相同的API，但它们之间的区别是基于经济层面上的：平行链需要在租赁值槽期间持有DOT，而平行线程则是按区块付费。平行线程可以变成平行链，反之亦然。
 
-Polkadot provides many ways to secure a slot for a parachain for a particular length of time.
-Parathreads are part of a pool that shares slots and must-win auctions for individual blocks.
-Parathreads and parachains have the same API; their difference is economic. Parachains will have to
-reserve DOT for the duration of their slot lease; parathreads will pay on a per-block basis.
-Parathreads can become parachains, and vice-versa.
+### [共享安全性](learn-security.md)
 
-### [Shared Security](learn-security.md)
+连接到Polkadot中继链的平行链们，都享有中继链的安全性。Polkadot在中继链和所有连接的平行链之间具有共享状态。如果由于某些原因，中继链必须状态回退，那么所有的平行链也将跟着回退。这是为了确保整个制度的有效性能持久存在，没有任何单独部分可以被入侵篡改。
 
-Parachains connected to the Polkadot Relay Chain all share in the security of the Relay Chain.
-Polkadot has a shared state between the Relay Chain and all of the connected parachains. If the
-Relay Chain must revert for any reason, then all of the parachains would also revert. This is to
-ensure that the validity of the entire system can persist and no individual part is corruptible.
+共享状态，可以保证使用Polkadot平行链时的信任假设仅为中继链校验器集的信任假设，而不是其他假设。拥有大量押注的支持，中继链上的校验器理论上是安全的，平行链应该也会从这种安全性中受益。
 
-The shared state ensures that the trust assumptions when using Polkadot parachains are only
-those of the Relay Chain validator set and no other. Since the validator set on the Relay Chain is
-expected to be secure with a large amount of stake put up to back it, parachains should benefit from
-this security.
+## 互用性
 
-## Interoperability
+### [跨共识消息格式（XCM）](learn-crosschain)
 
-### [XCM](learn-crosschain)
-XCM, short for cross-consensus message, is a format and not a protocol. The format 
-does not assume anything about the receiver or senders consensus mechanism, it only cares about 
-the format in which the messages must be structured in. The XCM format is how parachains will be able to 
-communicate with one another. Different from XCMP, which is short for cross-chain messaging protocol,
-XCM is what gets delivered, and XCMP is the delivery mechanism. The best way to learn more about XCM is by
-reading the [specification](https://github.com/paritytech/xcm-format).
+XCM是跨共识消息的简称，它是一种格式，而不是一种协议。格式不假定接收方或发送方的共识机制，它只关心消息必须采用的格式。XCM格式是平行链能够相互通信的方式。与XCMP（即“跨链消息传递协议”的缩写）不同的是，XCM是可被交付的成果，而XCMP是交付机制。了解更多关于XCM的知识，最好方法是阅读[规范](https://github.com/paritytech/xcm-format)。
 
-### [Bridges](learn-bridges.md)
-A blockchain [bridge](../general/glossary.md#bridge) is a connection that allows for arbitrary data to
-transfer from one network to another. These chains are interoperable through the bridge but can
-exist as standalone chains with different protocols, rules, and governance models. In Polkadot,
-bridges connect to the Relay Chain and are secured through the Polkadot consensus mechanism,
-maintained by [collators](#collators).
+### [区块链桥](learn-bridges.md)
 
-Polkadot uses bridges to bridge the future of Web 3.0, as bridges are fundamental to Polkadot's
-interoperable architecture by acting as a [secure and robust] communication channel for chains in
-isolation.
+区块链桥，是一种允许任意数据从一个网络传输到另一个网络的连接方式。各种链可以通过区块链桥进行互操作，但也可以作为具有不同协议、规则和治理模型的独立链存在。在Polkadot中，区块链桥可连接到中继链，并通过由[排序器](#collators)维护的Polkadot共识机制进行保护。
 
-# Main Actors
+通过区块链桥，Polkadot可以连接Web 3.0的未来，因为作为隔离状态链[安全稳健]的通信渠道，区块链桥是Polkadot互操作性体系结构的基础。
 
-## Validators
+# 主要角色
 
-[Validators](../general/glossary.md#validator), if elected to the validator set, produce blocks on the Relay
-Chain. They also accept proofs of valid state transition from collators. In return, they will
-receive staking rewards.
+## 校验器（Validators）
 
-## Nominators
+如果[校验器](../general/glossary.md#validator)被选入校验集，则会在中继链上产生区块。它们也接受来自校验器的有效状态转换的证据；作为回报，它们将获得押注奖励。
 
-[Nominators](../general/glossary.md#nominator) bond their stake to particular validators in order to help them
-get into the active validator set and thus produce blocks for the chain. In return, nominators are
-generally rewarded with a portion of the staking rewards from that validator.
+## 提名器（Nominators）
 
-## Collators
+[提名器](../general/glossary.md#nominator)将它们的押注绑定到特定的校验器上，以帮助押注进入激活状态下的验证器集，从而为链生成区块。作为回报，提名器通常会从校验器那里获得一部分押注奖励。
 
-[Collators](../general/glossary.md#collator) are full nodes on both a parachain and the Relay Chain. They
-collect parachain transactions and produce state transition proofs for the validators on the Relay
-Chain. They can also send and receive messages from other parachains using XCMP.
+## 排序器（Collators）
+
+[排序器](../general/glossary.md#collator)是平行链和中继链上的完整节点。他们收集平行链事务，并为中继链上的校验器生成状态转换证明。它们还可以使用XCMP发送和接收来自其他平行链的消息。
 
 ---
 
-## Whiteboard Series
+## 白板系列
 
-For a video overview of the architecture of Polkadot watch the video below for the whiteboard
-interview with W3F researcher Alistair Stewart:
+有关Polkadot架构的视频讲解，请参考W3F研究员阿利斯泰尔·斯图尔特的白板采访视频：
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xBfC6uTjvbM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
