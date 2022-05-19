@@ -1,5 +1,3 @@
-> 原文链接：https://wiki.polkadot.network/docs/learn-nft
-> 翻译：Sherise
 
 ---
 id: learn-nft
@@ -9,6 +7,10 @@ description: An explanation of the NFT landscape in the Polkadot ecosystem.
 keywords: [NFT, non-fungible token, NFT 2.0]
 slug: ../learn-nft
 ---
+
+> 原文链接：https://wiki.polkadot.network/docs/learn-nft
+> 
+> 翻译：Sherise
 
 本页是对NFT以及波卡网络中各种NFT方法的总览。
 
