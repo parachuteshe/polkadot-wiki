@@ -1,3 +1,6 @@
+> 原文链接：https://wiki.polkadot.network/docs/learn-nft
+> 翻译：Sherise
+
 ---
 id: learn-nft
 title: NFTs
