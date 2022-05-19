@@ -7,9 +7,7 @@ keywords: [NFT, 不可替代代币, NFT 2.0]
 slug: ../learn-nft
 ---
 
-> 原文链接：https://wiki.polkadot.network/docs/learn-nft
-> 
-> 翻译：Sherise
+> 原文链接：https://wiki.polkadot.network/docs/learn-nft，中文翻译：Sherise
 
 本页是对NFT以及波卡网络中各种NFT方法的总览。
 
@@ -99,7 +97,7 @@ RMRK团队刚刚发布了该协议的2.0版本，这是一套“NFT乐高（NFT 
 
 ```note 
 
-多资源型NFT
+`多资源型NFT`
 
 多资源型NFT（GIF的状态，和SVG组合型动态NFT可合二为一）也可从它的“库存”中装备其他NFT。
 
@@ -146,7 +144,7 @@ Uniques故意采取了一种非常简单的方法，使Statemint链成为可替�
 
 ![](../assets/nft/uniques.png)
 
-**更多的用户界面已经在开发中**。
+`更多的用户界面已经在开发中`。
 
 ---
 
@@ -162,5 +160,5 @@ Uniques故意采取了一种非常简单的方法，使Statemint链成为可替�
 
 ### 参考
 
+> [1]: [Investopedia](https://www.investopedia.com/terms/l/liars-poker.asp)
 - [2]: [Unique Network's Chelobrick](https://unique.network/blog/chelobricks-making-waves-with-10-000-substrate-based-nfts/)
-- [1]: [Investopedia](https://www.investopedia.com/terms/l/liars-poker.asp)；
